@@ -400,3 +400,7 @@ FodyWeavers.xsd
 # My files and folders
 Homework/Homework_028/.venv/
 config.ini
+temp.txt
+temp.java
+temp.cs
+temp.py
