@@ -16,7 +16,7 @@ public class program {
         
         // 1. Пусть дан произвольный список целых чисел, удалить из него четные числа (в
         // языке уже есть что-то готовое для этого)
-        
+
         // removeEven(list);
         superRemoveEven(list);
         System.out.println("List without even numbers:");
@@ -30,7 +30,7 @@ public class program {
         System.out.println(minValue(list));
         System.out.print("Max value is ");
         System.out.println(maxValue(list));
-        System.out.print("Evarage value is ");
+        System.out.print("Everage value is ");
         System.out.println(everageValue(list));
         System.out.println();
 
