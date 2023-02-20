@@ -30,8 +30,8 @@ public class program {
         System.out.println(minValue(list));
         System.out.print("Max value is ");
         System.out.println(maxValue(list));
-        System.out.print("Everage value is ");
-        System.out.println(everageValue(list));
+        System.out.print("Average value is ");
+        System.out.println(averageValue(list));
         System.out.println();
 
 
@@ -81,7 +81,7 @@ public class program {
         return max;
     }
 
-    public static Double everageValue(List<Integer> list) {
+    public static Double averageValue(List<Integer> list) {
         int sum = 0;
         int count = 0;
 
@@ -90,7 +90,7 @@ public class program {
             count++;
         }
 
-        double everage = Math.round((double)sum / (double)count * 100);
-        return everage / 100;
+        double average = Math.round((double)sum / (double)count * 100);
+        return average / 100;
     }
 }
