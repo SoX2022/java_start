@@ -44,17 +44,17 @@ public class Main {
         while (plate.getFoodStat() >= minCatAppetite) {
             for (Cat cat : cats) {
                 cat.eat(plate);
-                System.out.println(plate);
             }
+            System.out.println(plate);
             System.out.println();
 
             if (random.nextInt(6) > 3) {
                 System.out.println(
                         plate.increaseFood(random.nextInt(maxFoodToPutInPlate) + 1) + " food put on the plate.");
-                System.out.println(plate);
             } else {
                 System.out.println("Nothing was put on the plate.");
             }
+            System.out.println(plate);
 
             System.out.println();
             Thread.sleep(1000);

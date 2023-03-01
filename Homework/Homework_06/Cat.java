@@ -22,7 +22,9 @@ public class Cat {
 
         Thread backgroundSatietyManagement = new Thread(() -> {
             while (true) {
+                if (this.satiety > 0) {
                 this.satiety -= 1;
+                }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
