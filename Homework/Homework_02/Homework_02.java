@@ -26,7 +26,6 @@ public class Homework_02 {
             try {
                 Files.createDirectories(directoryPath);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             createFile(path);
@@ -54,7 +53,6 @@ public class Homework_02 {
         try {
             Files.writeString(path, text);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
