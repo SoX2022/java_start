@@ -10,12 +10,12 @@ public class Plate {
         this.plateCapacity = food;
     }
 
-    public boolean decreaseFood(int foodToDecrease) {
+    public int decreaseFood(int foodToDecrease) {
         if (this.food >= foodToDecrease) {
             this.food -= foodToDecrease;
-            return true;
+            return foodToDecrease;
         }
-        return false;
+        return 0;
     }
 
     @Override
