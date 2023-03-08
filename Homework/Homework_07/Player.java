@@ -2,7 +2,7 @@ package Homework.Homework_07;
 
 import java.util.Random;
 
-public abstract class Player {
+public abstract class Player implements HaveHealthPoints {
     // #region init
     private static final double DAMAGE_REDUCE_CHANCE = 0.5;
     protected static long playerId;
@@ -47,9 +47,13 @@ public abstract class Player {
                 System.out.println();
                 System.out.println(player.name + " is dead.");
             } else if (this.damage - damage > 0) {
-                System.out.println(this.damage - damage + " damage was blocked.");
+                System.out.print(this.damage - damage + " damage was blocked.");
             }
 
+            System.out.println();
+            System.out.println(player.name);
+            Render render = new Render();
+            render.viewBar(player);
             System.out.println();
         }
     }
@@ -95,7 +99,17 @@ public abstract class Player {
 
     protected abstract void getPlayerClass();
 
-    public void resetHealth () {
+    public void resetHealth() {
         this.health = this.maxHealth;
+    }
+
+    @Override
+    public int getMaxHealthPoints() {
+        return this.maxHealth;
+    }
+
+    @Override
+    public int getCurrentHealthPoints() {
+        return this.health;
     }
 }

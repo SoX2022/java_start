@@ -1,6 +1,6 @@
 package Homework.Homework_07;
 
-public class Healer extends Player {
+public class Healer extends Player implements HaveManaPoints {
     private static final int MAX_HEAL = 45;
     private static final int HEAL_COST = 40;
     private static final int MANA_REGENERATION = 7;
@@ -23,14 +23,19 @@ public class Healer extends Player {
         System.out.println("Mana: " + this.mana + " / " + this.maxMana);
     }
 
-    public void healing() {
+    private void healing() {
         int heal = MAX_HEAL;
+
         if (this.health + heal > maxHealth) {
             heal = this.maxHealth - this.health;
         }
+
         this.health += heal;
         this.mana -= HEAL_COST;
         System.out.println(this.name + " heal " + heal + " health.");
+        Render render = new Render();
+        render.viewSelfHealthBar(this.health, this.maxHealth);
+        render.viewSelfManaBar(this.mana, this.maxMana);
         System.out.println();
     }
 
@@ -48,8 +53,18 @@ public class Healer extends Player {
         System.out.println("Healer");
     }
 
-    public void resetHealth () {
+    public void resetHealth() {
         super.resetHealth();
         this.mana = this.maxMana;
+    }
+
+    @Override
+    public int getMaxManaPoints() {
+        return this.maxMana;
+    }
+
+    @Override
+    public int getCurrentManaPoints() {
+        return this.mana;
     }
 }

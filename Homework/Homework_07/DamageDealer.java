@@ -10,7 +10,7 @@ public class DamageDealer extends Player {
         super(name, 150, 25, 7);
     }
 
-    public void criticalAtack(Player player) {
+    private void criticalAtack(Player player) {
         this.damage *= DAMAGE_MULTIPLIER;
         super.atack(player);
         this.damage /= DAMAGE_MULTIPLIER;

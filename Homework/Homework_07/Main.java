@@ -53,6 +53,7 @@ public class Main {
             System.out.println(" is a WINNER!");
             System.out.println();
         }
+        scanner.close();
     }
 
     public static boolean fight(Player firstFighter, Player secondFighter) {
