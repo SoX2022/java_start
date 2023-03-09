@@ -8,18 +8,18 @@ public class Render {
         if (object instanceof HaveHealthPoints haveHealthPoints) {
             max = haveHealthPoints.getMaxHealthPoints();
             current = haveHealthPoints.getCurrentHealthPoints();
-            printThreeColoredBar(getBarProgress(current, max), max);
+            printThreeColoredBar(getBarProgress(current, max));
         }
 
 
         if (object instanceof HaveManaPoints haveManaPoints) {
             max = haveManaPoints.getMaxManaPoints();
             current = haveManaPoints.getCurrentManaPoints();
-            printOneColoredBar(getBarProgress(current, max), max, "\u001B[34m");
+            printOneColoredBar(getBarProgress(current, max), "\u001B[34m");
         }
     }
 
-    private void printThreeColoredBar(int bar, int maxPoints) {
+    private void printThreeColoredBar(int bar) {
         String collor = "\u001B[32m";
 
         if (bar < 4) {
@@ -28,10 +28,10 @@ public class Render {
             collor = "\u001B[33m";
         }
 
-        printOneColoredBar(bar, maxPoints, collor);
+        printOneColoredBar(bar, collor);
     }
 
-    private void printOneColoredBar(int bar, int maxPoints, String collor) {
+    private void printOneColoredBar(int bar, String collor) {
         System.out.print(collor);
 
         for (int i = 0; i < bar; i++) {
@@ -55,10 +55,10 @@ public class Render {
     }
 
     public void viewSelfHealthBar(int currentHealth, int maxHealth) {
-        printThreeColoredBar(getBarProgress(currentHealth, maxHealth), maxHealth);
+        printThreeColoredBar(getBarProgress(currentHealth, maxHealth));
     }
 
     public void viewSelfManaBar(int currentMana, int maxMana) {
-        printOneColoredBar(getBarProgress(currentMana, maxMana), maxMana, "\u001B[34m");
+        printOneColoredBar(getBarProgress(currentMana, maxMana), "\u001B[34m");
     }
 }
