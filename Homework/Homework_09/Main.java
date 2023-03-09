@@ -18,11 +18,17 @@ public class Main {
         ArrayList<Notebook> notebooks2 = new ArrayList<>(notebooksQuantity);
         ArrayList<Notebook> notebooks3 = new ArrayList<>(notebooksQuantity);
         ArrayList<Notebook> notebooks4 = new ArrayList<>(notebooksQuantity);
+        ArrayList<Notebook> notebooks5 = new ArrayList<>(notebooksQuantity);
+        ArrayList<Notebook> notebooks6 = new ArrayList<>(notebooksQuantity);
+        ArrayList<Notebook> notebooks7 = new ArrayList<>(notebooksQuantity);
 
         fillArray(notebooks1, notebooksQuantity);
         fillArray(notebooks2, notebooksQuantity);
         fillArray(notebooks3, notebooksQuantity);
         fillArray(notebooks4, notebooksQuantity);
+        fillArray(notebooks5, notebooksQuantity);
+        fillArray(notebooks6, notebooksQuantity);
+        fillArray(notebooks7, notebooksQuantity * 2);
 
         System.out.println("\u001B[31m" + "Salary UP" + "\u001B[0m");
         printStats(notebooks1);
@@ -42,6 +48,21 @@ public class Main {
         System.out.println("\u001B[31m" + "Ram DOWN + Salary UP" + "\u001B[0m");
         printStats(notebooks4);
         notebooks4.sort(new RamPlusSalaryComparator());
+        printStats(notebooks4);
+        
+        System.out.println("\u001B[31m" + "Screen Size UP" + "\u001B[0m");
+        printStats(notebooks4);
+        notebooks4.sort(new ScreenSizeComparatior());
+        printStats(notebooks4);
+        
+        System.out.println("\u001B[31m" + "Battary Capasity DOWN" + "\u001B[0m");
+        printStats(notebooks4);
+        notebooks4.sort(new BattaryCapacityComparator());
+        printStats(notebooks4);
+        
+        System.out.println("\u001B[31m" + "Screen DOWN + Ram DOWN + Battary DOWN + Salary UP" + "\u001B[0m");
+        printStats(notebooks4);
+        notebooks4.sort(new AllStatsComparator());
         printStats(notebooks4);
 
     }
