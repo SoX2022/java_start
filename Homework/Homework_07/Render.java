@@ -2,8 +2,8 @@ package Homework.Homework_07;
 
 public class Render {
     public void viewBar(Object object) {
-        int current = 5;
-        int max = 10;
+        int current;
+        int max;
 
         if (object instanceof HaveHealthPoints haveHealthPoints) {
             max = haveHealthPoints.getMaxHealthPoints();
