@@ -1,8 +1,9 @@
 package Homework.Homework_10;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Box<T extends Fruit> {
+public class Box<T extends Fruit> implements Iterable<T> {
     private int netto = 0;
     private ArrayList<T> box;
 
@@ -30,5 +31,11 @@ public class Box<T extends Fruit> {
                 i--;
             }
         }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        // return new BoxIterator<>(box);
+        return box.iterator();
     }
 }

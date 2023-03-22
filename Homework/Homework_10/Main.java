@@ -45,9 +45,9 @@ public class Main {
         // appleBox.moveTo(goldenAppleBox);
 //
 //        // 3.*
-//        for (GoldenApple apple: goldenAppleBox) { // должно работать
-//
-//        }
+       for (GoldenApple apple: goldenAppleBox) { // должно работать
+        System.out.println(apple);
+       }
     }
 
 }
