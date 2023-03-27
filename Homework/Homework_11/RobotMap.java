@@ -83,7 +83,6 @@ public class RobotMap {
         }
 
         public void changeDirection(String direction) throws IllegalArgumentException {
-            Direction.valueOf(direction);
             this.direction = Direction.valueOf(direction);
         }
 

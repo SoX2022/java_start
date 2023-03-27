@@ -1,6 +1,7 @@
 package Homework.Homework_11;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -32,72 +33,56 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         RobotMap map = null;
         boolean notStop = true;
+        String userCommand = "";
+
+        while (notStop) {
+            System.out.println("Введите команду для создания карты.");
+            System.out.println("create-map {size: x, y}");
+            userCommand = sc.nextLine();
+
+            if (userCommand.startsWith("create-map")) {
+                String[] split = userCommand.split(" ");
+                String[] arguments = Arrays.copyOfRange(split, 1, split.length);
+
+                try {
+                    map = new RobotMap(Integer.parseInt(arguments[0]), Integer.parseInt(arguments[1]));
+                    System.out.println("Карта создана. ИГРАЕМ...\n");
+                    notStop = false;
+                } catch (IllegalArgumentException e) {
+                    System.out.println(
+                            "При создании карты возникло исключение: " + e.getMessage() + ". Попробуйте еще раз\n");
+                }
+            }
+        }
+
+        notStop = true;
 
         while (notStop) {
             System.out.println("Выберите команду из списка :");
+            System.out.println("create-robot {point: x, y}");
 
-            if (map == null) {
-                System.out.println("create-map {size: x, y}");
-            } else {
-                System.out.println("create-robot {point: x, y}");
+            if (!map.mapIsEmpty()) {
+                System.out.println("move-robot {id}");
+                System.out.println("change-direction {id, direction: LEFT / RIGTH / TOP / BOTTOM}");
 
-                if (!map.mapIsEmpty()) {
-                    System.out.println("move-robot {id}");
-                    System.out.println("change-direction {id, direction: LEFT / RIGTH / TOP / DOWN}");
-
-                }
             }
+
             System.out.println("exit\n");
 
-            String userCommand = sc.nextLine();
-            String[] split = userCommand.split(" ");
-            String command = split[0];
-            String[] arguments = Arrays.copyOfRange(split, 1, split.length); // [3 5]
+            CommandManager commandManager = new CommandManager(map, List.of(
+                new CreateRobotHandler(),
+                new MoveRobotHandler(),
+                new ChangeDirectionHandler()
+            ));
+            userCommand = sc.nextLine();
 
-            switch (command) {
-                case "create-map":
-                    try {
-                        map = new RobotMap(Integer.parseInt(arguments[0]), Integer.parseInt(arguments[1]));
-                        System.out.println("ИГРАЕМ...\n");
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(
-                                "При создании карты возникло исключение: " + e.getMessage() + ". Попробуйте еще раз\n");
-                    }
-                    break;
-
-                case "create-robot":
-                    try {
-                        System.out.println("Robot`s id is " + map.createRobot(new Point(Integer.parseInt(arguments[0]), Integer.parseInt(arguments[1]))));
-                    } catch (PositionException e) {
-                        System.out.println("При создании робота возникло исключение: " + e.getMessage() + "\n");
-                    }
-                    break;
-
-                case "move-robot":
-                    try {
-                        map.moveRobot(Long.parseLong(arguments[0]));
-                        System.out.println("Robot " + arguments[0] + " moved forward.");
-                    } catch (PositionException e) {
-                        System.out.println("При перемещении робота возникло исключение: " + e.getMessage() + "\n");
-                    }
-                    break;
-
-                case "change-direction":
-                try {
-                    map.changeRobotDirection(Long.parseLong(arguments[0]),
-                            arguments[1].toUpperCase());
-                    System.out.println("Robot " + arguments[0] + " looking " + arguments[1].toUpperCase() + " now.");
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Такого направления не существует.");
-                }
-                     break;
-
+            switch (userCommand) {
                 case "exit":
                     notStop = false;
                     break;
 
                 default:
-                    System.out.println("Команда не найдена. Попробуйте еще раз\n");
+                commandManager.handleCommand(userCommand);
             }
         }
         sc.close();
